@@ -1,11 +1,12 @@
-# Description
+# question_generation
+## Description
 
 It is a question-generator model. It takes text and an answer as input
 and outputs a question.
 
 Question generator model trained in seq2seq setup by using http://opennmt.net.
 
-# Environment
+## Environment
 
 - Docker ver. 17.03+:
 
@@ -16,22 +17,24 @@ Question generator model trained in seq2seq setup by using http://opennmt.net.
 - Python 3
 - pyzmq dependencies: Ubuntu `sudo apt-get install libzmq3-dev` or for Mac `brew install zeromq --with-libpgm`
 
-# Setup
+## Setup
 
-- run `./setup`.
+- run `script/setup`.
 This script downloads torch question generation model,
 installs python requirements, pulls docker images and runs
-opennmt and corenlp servers.
+opennmt (_Open-Source Neural Machine Translation_) and corenlp servers.
 
+Otherwise, use the `docker-compose` definition and run `docker-compose up [-d]` to launch both server.
+(models needs to be dowloaded once with `script/download-model``
 
-# Usage
+## Usage
 
 `./get_qnas "<text>"` - takes as input text and outputs tsv.
 - First column is a question,
 - second column is an answer,
 - third column is a score.
 
-## Example
+### Example
 
 Input:
 
@@ -50,7 +53,7 @@ when was the location premiere ?  11 december 2015  -6.1178450584412
 ```
 
 
-# Notes
+## Notes
 
 - First model feeding may take a long time because of CoreNLP modules loading.
-- Do not forget to install pyzmq dependencies.
+- Do not forget to install `pyzmq dependencies.
