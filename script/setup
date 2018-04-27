@@ -1,15 +1,6 @@
 #!/bin/bash
 
-shasum -c data/model.t7.sha1
-retval=$?
-if [ $retval -ne 0 ]; then
-  if [ -f data/model.t7 ]; then
-    echo "----------------Removing stale model file----------------"
-    rm -f data/model.t7
-  fi
-  echo "----------------Downloading question-generation model----------------"
-  wget https://www.dropbox.com/s/jtp6ll263lz32xl/model.t7 -P data/
-fi
+source download-model.sh
 
 echo "----------------Installing python requirements----------------"
 pip3 install -r requirements.txt
@@ -32,7 +23,7 @@ P="Waiting had its world premiere at the \
   from critics. It was also screened at the closing gala of the London Asian \
   Film Festival, where Menon won the Best Director Award."
 echo "$P"
-./get_qnas "$P"
+../get_qnas "$P"
 sleep 120
 
 echo "----------------Stopping containers----------------"
